@@ -1,13 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Send, Loader } from 'lucide-react';
 import { generateThought } from './api';
 import { ThoughtProcess } from './components/ThoughtProcess';
 import { ChatMessage, ThoughtResponse } from './types';
+import { SpeechService } from './utils/speech';
 
 function App() {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
+  const speechService = SpeechService.getInstance();
+
+  useEffect(() => {
+    // Inicializa o serviço de voz
+    SpeechService.getInstance();
+  }, []);
 
   const processThoughts = async (userMessage: string) => {
     setIsProcessing(true);
@@ -22,9 +29,13 @@ function App() {
       });
     }
 
+    // Lê automaticamente a resposta final (pensamento reflexivo)
+    const finalResponse = thoughts[thoughts.length - 1].content;
+    speechService.speak(finalResponse);
+
     setMessages(prev => [...prev, 
       { role: 'user', content: userMessage },
-      { role: 'assistant', content: thoughts[thoughts.length - 1].content, thoughts }
+      { role: 'assistant', content: finalResponse, thoughts }
     ]);
     setIsProcessing(false);
   };
