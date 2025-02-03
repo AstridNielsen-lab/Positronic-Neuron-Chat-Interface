@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Send, Loader } from 'lucide-react';
+import { Send, Loader, Brain, Phone, Globe, Mail } from 'lucide-react';
 import { generateThought } from './api';
 import { ThoughtProcess } from './components/ThoughtProcess';
 import { ChatMessage, ThoughtResponse } from './types';
@@ -50,8 +50,8 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      <div className="max-w-4xl mx-auto p-4">
+    <div className="min-h-screen bg-gray-100 flex flex-col">
+      <div className="flex-grow max-w-4xl mx-auto p-4 w-full">
         <header className="text-center mb-8">
           <h1 className="text-3xl font-bold text-gray-800">Chat de Rede Neural Positrônica</h1>
           <p className="text-gray-600">Experimente a evolução do pensamento através das fases neurais</p>
@@ -98,6 +98,67 @@ function App() {
           </form>
         </div>
       </div>
+
+      <footer className="bg-gray-800 text-white py-8 mt-8">
+        <div className="max-w-4xl mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="space-y-4">
+              <div className="flex items-center gap-2">
+                <Brain className="w-6 h-6 text-blue-400" />
+                <h3 className="text-xl font-semibold">Like Look Solutions</h3>
+              </div>
+              <p className="text-gray-300">
+                Desenvolvendo soluções inovadoras em Inteligência Artificial e Neurônios Positrônicos
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              <h3 className="text-xl font-semibold">Contato</h3>
+              <div className="space-y-2">
+                <a 
+                  href="tel:+5511970603441" 
+                  className="flex items-center gap-2 text-gray-300 hover:text-blue-400 transition-colors"
+                >
+                  <Phone className="w-5 h-5" />
+                  <span>+55 11 97060-3441</span>
+                </a>
+                <a 
+                  href="https://likelook.wixsite.com/solutions" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="flex items-center gap-2 text-gray-300 hover:text-blue-400 transition-colors"
+                >
+                  <Globe className="w-5 h-5" />
+                  <span>Website</span>
+                </a>
+                <a 
+                  href="https://wa.me/5511970603441" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="flex items-center gap-2 text-gray-300 hover:text-blue-400 transition-colors"
+                >
+                  <Mail className="w-5 h-5" />
+                  <span>WhatsApp</span>
+                </a>
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <h3 className="text-xl font-semibold">Desenvolvedor</h3>
+              <p className="text-gray-300">
+                Julio Campos Machado
+              </p>
+              <p className="text-gray-300">
+                Especialista em Inteligência Artificial e Desenvolvimento de Software
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-8 pt-4 border-t border-gray-700 text-center text-gray-400">
+            <p>&copy; {new Date().getFullYear()} Like Look Solutions. Todos os direitos reservados.</p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
